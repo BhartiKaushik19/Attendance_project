@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="position"
+            type="java.lang.Integer" />
+        <import type="android.view.View"/>
+        <variable
+            name="view"
+            type="View" />
+        <variable
+            name="viewModel"
+            type="com.example.attendance_project.announcements.FeedViewModel" />
+        <variable
+            name="model"
+            type="com.example.attendance_project.announcements.FeedModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:onClick="@{(view)-> viewModel.onClickItem(view)}">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_launcher_background"
+            app:civ_border_width="3dp"
+            app:civ_border_color="#FF000000"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="4dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EBE4EB"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/feed_clubname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{model.feed_clubname}"
+                android:textSize="25dp"
+                android:paddingLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:visibility="@{(model.feed_clubname!=null) ? View.VISIBLE : View.GONE}"
+                tools:text="clubName"/>
+
+            <LinearLayout
+                android:id="@+id/feed_chip_linearlayout"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/feed_date_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_border_radius"
+                    android:textSize="16dp"
+                    android:layout_margin="10dp"
+                    android:padding="16dp"
+                    android:visibility="@{(model.feed_chip_date!=null) ? View.VISIBLE : View.GONE}"
+                    android:text="@{model.feed_chip_date}"/>
+                <TextView
+                    android:id="@+id/feed_venue_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/background_border_radius"
+                    android:padding="16dp"
+                    android:visibility="@{(model.feed_chip_venue!=null) ? View.VISIBLE : View.GONE}"
+                    android:text="@{model.feed_chip_venue}"/>
+
+
+                <TextView
+                    android:id="@+id/feed_forgot_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/background_border_radius"
+                    android:padding="16dp"
+                    android:visibility="@{(model.chip_forgot!=null) ? View.VISIBLE : View.GONE}"
+                    android:text="@{model.chip_forgot}"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/expandableId"
+                android:background="#fff"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{model.data}"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>
+
